@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserProvider } from './context/UserContext';
+import LoginForm from './components/LoginForm';
+import NewOperationForm from './components/NewOperationForm';
+import ProtectedRoute from './ProtectedRoute';
+import Header from './components/Header';
+import RecordsTable from './components/RecordsTable';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>
+      <Router>
+        <Header /> 
+        <Routes>
+          <Route path="/new-operation" element={<ProtectedRoute component={NewOperationForm} />} />
+          <Route path="/records" element={<ProtectedRoute component={RecordsTable} /> } />
+          <Route path='*' element={<LoginForm />} />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
-}
+};
 
 export default App;
