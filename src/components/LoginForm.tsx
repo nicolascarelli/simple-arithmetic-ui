@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../context/UserContext";
 import { login } from "../services/services";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState("");

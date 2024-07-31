@@ -9,7 +9,7 @@ const RecordsTable: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [perPage, setPerPage] = useState<number>(5);
+  const perPage = 5;
   const [totalRecords, setTotalRecords] = useState<number>(0);
   const [sort, setSort] = useState<{ field: string; order: "ASC" | "DESC" }>({
     field: "id",
@@ -62,7 +62,8 @@ const RecordsTable: React.FC = () => {
       await deleteOperation(id, state.access_token!);
       setRecords(records.filter((record) => record.operation.id !== id));
       setTotalRecords(totalRecords - 1);
-      const newBalance = parseFloat(state.balance!) + parseFloat(amount as unknown as string);
+      const newBalance =
+        parseFloat(state.balance!) + parseFloat(amount as unknown as string);
       dispatch({
         type: "UPDATE_BALANCE",
         payload: {
