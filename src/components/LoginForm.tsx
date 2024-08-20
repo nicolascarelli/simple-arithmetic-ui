@@ -42,7 +42,6 @@ const LoginForm: React.FC = () => {
           (error as Error).message || "An error occurred. Please try again."
         );
       }
-      console.error("Login error:", error);
     }
   };
 

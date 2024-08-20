@@ -31,7 +31,6 @@ const NewOperationForm: React.FC = () => {
     try {
       const { data } = await createOperation(expression, state.access_token!);
       setResult(data.operation_response);
-      console.log(data.user_balance);
       dispatch({
         type: "UPDATE_BALANCE",
         payload: {
@@ -63,8 +62,9 @@ const NewOperationForm: React.FC = () => {
           <h2>New Operation</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label className="form-label">Operation</label>
+              <label className="form-label" htmlFor="operation-select">Operation</label>
               <select
+                id="operation-select"
                 className="form-select"
                 value={operation}
                 onChange={(e) => setOperation(e.target.value as OperationType)}
@@ -79,8 +79,9 @@ const NewOperationForm: React.FC = () => {
             </div>
             {operation !== OperationType.RANDOM_STRING && (
               <div className="mb-3">
-                <label className="form-label">Input 1</label>
+                <label className="form-label" htmlFor="input1">Input 1</label>
                 <input
+                  id="input1"
                   className="form-control"
                   type="number"
                   value={input1 ?? ""}
@@ -92,8 +93,9 @@ const NewOperationForm: React.FC = () => {
             {operation !== OperationType.SQUARE_ROOT &&
               operation !== OperationType.RANDOM_STRING && (
                 <div className="mb-3">
-                  <label className="form-label">Input 2</label>
+                  <label className="form-label" htmlFor="input2">Input 2</label>
                   <input
+                    id="input2"
                     className="form-control"
                     disabled={input1 === null}
                     type="number"

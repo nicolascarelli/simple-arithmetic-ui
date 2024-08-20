@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, ReactNode } from "react";
 
-interface UserState {
+export interface UserState {
   username: string | null;
   balance: string | null;
   access_token: string | null;
